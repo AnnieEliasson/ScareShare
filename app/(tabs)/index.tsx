@@ -6,6 +6,7 @@ import {
   AnnieUseYourTelescope_400Regular,
 } from "@expo-google-fonts/annie-use-your-telescope";
 import { useAppContext } from "@/components/context";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const index = () => {
   const { user } = useAppContext();
@@ -18,11 +19,11 @@ const index = () => {
   }
   return (
     <>
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <Text style={styles.userText}>Inloggad som: {user?.name}</Text>
         <Text style={styles.text}>ScareShare</Text>
         <Text style={styles.slogan}>- För monster som vill mingla!</Text>
-      </View>
+      </SafeAreaView>
       <StatusBar barStyle={"light-content"} />
     </>
   );
@@ -48,9 +49,11 @@ const styles = StyleSheet.create({
   },
   slogan: {
     color: "orange",
-    position: "absolute",
+    /* position: "absolute",
     top: 400,
-    left: 137,
+    left: 137, */
+    marginTop: -20,
+    marginRight: -95,
     textShadowColor: "black",
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 1,

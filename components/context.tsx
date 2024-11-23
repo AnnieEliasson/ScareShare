@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import data from "../data.json";
 // Typ för Monster
-type Monster = {
+export type Monster = {
   id: number;
   name: string;
   color: string;
