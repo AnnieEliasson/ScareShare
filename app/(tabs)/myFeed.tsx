@@ -21,13 +21,15 @@ const MyFeed = () => {
   }, [posts, user]);
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={postsState}
-        renderItem={({ item }) => <PostItem item={item} />}
-        keyExtractor={(item) => item.id.toString()}
-      />
-    </View>
+    <>
+      <View style={styles.container}>
+        <FlatList
+          data={postsState}
+          renderItem={({ item }) => <PostItem item={item} />}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      </View>
+    </>
   );
 };
 

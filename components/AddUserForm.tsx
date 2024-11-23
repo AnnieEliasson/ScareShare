@@ -88,11 +88,12 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     width: "80%",
-    backgroundColor: "grey",
+    backgroundColor: "#303030",
     borderWidth: 1,
     borderColor: "white",
     borderRadius: 20,
     alignItems: "center",
+    marginTop: -190,
   },
   addBtn: {
     backgroundColor: "greenyellow",
