@@ -1,0 +1,246 @@
+{
+  "monsters": [
+    {
+      "id": 1,
+      "name": "Erik",
+      "color": "Grön",
+      "eyes": 2
+    },
+    {
+      "id": 2,
+      "name": "Anna",
+      "color": "Blå",
+      "eyes": 3
+    },
+    {
+      "id": 3,
+      "name": "Johan",
+      "color": "Röd",
+      "eyes": 1
+    },
+    {
+      "id": 4,
+      "name": "Karin",
+      "color": "Gul",
+      "eyes": 4
+    },
+    {
+      "id": 5,
+      "name": "Lars",
+      "color": "Svart",
+      "eyes": 2
+    },
+    {
+      "id": 6,
+      "name": "Emma",
+      "color": "Vit",
+      "eyes": 5
+    },
+    {
+      "id": 7,
+      "name": "Olof",
+      "color": "Orange",
+      "eyes": 3
+    },
+    {
+      "id": 8,
+      "name": "Maja",
+      "color": "Lila",
+      "eyes": 6
+    },
+    {
+      "id": 9,
+      "name": "Gustav",
+      "color": "Brun",
+      "eyes": 2
+    },
+    {
+      "id": 10,
+      "name": "Sara",
+      "color": "Turkos",
+      "eyes": 4
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "Ett äventyr i skogen",
+      "text": "Jag hittade ett märkligt träd som verkade leva!",
+      "authorId": 1,
+      "comments": [
+        {
+          "id": 1,
+          "text": "Låter spännande, vilket träd var det?",
+          "authorId": 2
+        },
+        {
+          "id": 2,
+          "text": "Var försiktig nästa gång!",
+          "authorId": 5
+        }
+      ],
+      "viewComments": false
+    },
+    {
+      "id": 2,
+      "title": "Ett hav fullt av färger",
+      "text": "Havet skiftade i regnbågens färger idag. Magiskt!",
+      "authorId": 2,
+      "comments": [
+        {
+          "id": 3,
+          "text": "Jag måste se det själv någon gång!",
+          "authorId": 4
+        }
+      ],
+      "viewComments": false
+    },
+    {
+      "id": 3,
+      "title": "Mina tankar om mat",
+      "text": "Jag älskar att äta, men inget slår en god insektspaj.",
+      "authorId": 3,
+      "comments": [
+        {
+          "id": 4,
+          "text": "Mums! Har du receptet?",
+          "authorId": 6
+        },
+        {
+          "id": 5,
+          "text": "Insekter är inte riktigt min grej...",
+          "authorId": 10
+        }
+      ],
+      "viewComments": false
+    },
+    {
+      "id": 4,
+      "title": "Barriären sviktar",
+      "text": "Jag känner av vibrationer i barriären. Något är på gång.",
+      "authorId": 4,
+      "comments": [
+        {
+          "id": 6,
+          "text": "Vi borde kalla in förstärkning!",
+          "authorId": 8
+        },
+        {
+          "id": 7,
+          "text": "Det låter oroande, håll mig uppdaterad.",
+          "authorId": 1
+        },
+        {
+          "id": 8,
+          "text": "Jag kan hjälpa till om du behöver.",
+          "authorId": 9
+        }
+      ],
+      "viewComments": false
+    },
+    {
+      "id": 5,
+      "title": "Nya vänner",
+      "text": "Jag träffade två små fåglar som hjälpte mig idag.",
+      "authorId": 5,
+      "comments": [
+        {
+          "id": 9,
+          "text": "Fåglar är fantastiska! Vad gjorde de?",
+          "authorId": 7
+        }
+      ],
+      "viewComments": false
+    },
+    {
+      "id": 6,
+      "title": "Fullmånen",
+      "text": "Under fullmånen blir jag extra kreativ. Idag målade jag ett mästerverk.",
+      "authorId": 6,
+      "comments": [
+        {
+          "id": 10,
+          "text": "Jag vill gärna se ditt konstverk!",
+          "authorId": 3
+        },
+        {
+          "id": 11,
+          "text": "Fullmånen påverkar mig också.",
+          "authorId": 10
+        }
+      ],
+      "viewComments": false
+    },
+    {
+      "id": 7,
+      "title": "Upptäckten i bergen",
+      "text": "Det finns en grotta här som ingen har sett förut!",
+      "authorId": 7,
+      "comments": [
+        {
+          "id": 12,
+          "text": "Vi måste utforska den tillsammans!",
+          "authorId": 4
+        },
+        {
+          "id": 13,
+          "text": "Var försiktig, det kan vara farligt.",
+          "authorId": 2
+        }
+      ],
+      "viewComments": false
+    },
+    {
+      "id": 8,
+      "title": "Ett hemligt recept",
+      "text": "Jag hittade ett recept på den godaste soppa jag någonsin smakat.",
+      "authorId": 8,
+      "comments": [
+        {
+          "id": 14,
+          "text": "Dela receptet, snälla!",
+          "authorId": 6
+        }
+      ],
+      "viewComments": false
+    },
+    {
+      "id": 9,
+      "title": "Nattens stjärnor",
+      "text": "Jag spenderade hela natten med att titta på stjärnorna. Så många frågor.",
+      "authorId": 9,
+      "comments": [
+        {
+          "id": 15,
+          "text": "Stjärnorna har många hemligheter.",
+          "authorId": 5
+        },
+        {
+          "id": 16,
+          "text": "Jag såg också något märkligt på himlen.",
+          "authorId": 8
+        }
+      ],
+      "viewComments": false
+    },
+    {
+      "id": 10,
+      "title": "Mystiska ljud",
+      "text": "Jag hörde konstiga ljud från barriären. Det är dags att undersöka.",
+      "authorId": 10,
+      "comments": [
+        {
+          "id": 17,
+          "text": "Vill du ha sällskap?",
+          "authorId": 7
+        },
+        {
+          "id": 18,
+          "text": "Rapportera vad du hittar.",
+          "authorId": 9
+        }
+      ],
+      "viewComments": false
+    }
+  ]
+}
