@@ -1,14 +1,8 @@
-import {
-  FlatList,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { Monster, Post, useAppContext } from "./context";
 import { useState } from "react";
+import SymbolsWithCounters from "./SymbolsWithCounters";
+import CommentForm from "./CommentForm";
 
 type Props = {
   item: Post;
@@ -35,38 +29,13 @@ const Comment = ({ item, monsters }: CommentProps) => {
   );
 };
 
-const handleViewComments = (item: Post, posts: Post[], setPosts: any) => {
-  const updatedArray = posts.map((p) =>
-    p.id === item.id ? { ...p, viewComments: !p.viewComments } : p
-  );
-
-  setPosts([...updatedArray]);
-};
-
 const PostItem = ({ item }: Props) => {
   const [viewCommentInput, setViewCommentInput] = useState(false);
-  const [commentInput, setCommentInput] = useState("");
-  const { monsters, posts, setPosts, user } = useAppContext();
+
+  const { monsters } = useAppContext();
   const author = monsters.find((m) => m.id === item.authorId);
 
-  const handleSendCommentPress = (item: Post) => {
-    const newComment = {
-      id: Math.random(),
-      text: commentInput,
-      authorId: user.id,
-    };
-
-    const updatedPosts = posts.map((post) =>
-      post.id === item.id
-        ? { ...post, comments: [...post.comments, newComment] }
-        : post
-    );
-
-    setPosts(updatedPosts);
-    setCommentInput("");
-  };
-
-  const handleCommentPress = (item: Post) => {
+  const handleCommentPress = () => {
     setViewCommentInput(!viewCommentInput);
   };
   return (
@@ -89,29 +58,7 @@ const PostItem = ({ item }: Props) => {
         >
           {author?.name}
         </Text>
-
-        <View style={{ flexDirection: "row", gap: 10 }}>
-          <Pressable
-            style={styles.chatbubble}
-            onPress={() => handleViewComments(item, posts, setPosts)}
-          >
-            <Ionicons
-              name={"chatbubble-ellipses-outline"}
-              color={"greenyellow"}
-              size={20}
-            />
-            <Text style={styles.whiteText}>{item.comments.length}</Text>
-          </Pressable>
-
-          {/* Ska hantera likes */}
-          <Pressable
-            style={styles.chatbubble}
-            onPress={() => handleViewComments(item, posts, setPosts)}
-          >
-            <Ionicons name={"heart-outline"} color={"maroon"} size={20} />
-            <Text style={styles.whiteText}>{item.comments.length}</Text>
-          </Pressable>
-        </View>
+        <SymbolsWithCounters item={item} />
         {item.viewComments && (
           <View>
             <FlatList
@@ -124,28 +71,13 @@ const PostItem = ({ item }: Props) => {
 
             <Pressable
               style={styles.commentBtn}
-              onPress={() => handleCommentPress(item)}
+              onPress={() => handleCommentPress()}
             >
               <Text style={{ fontWeight: "bold", color: "greenyellow" }}>
                 Kommentera
               </Text>
             </Pressable>
-            {viewCommentInput && (
-              <>
-                <TextInput
-                  placeholder="Skriv något..."
-                  multiline={true}
-                  numberOfLines={4}
-                  textAlignVertical="top"
-                  style={styles.input}
-                  value={commentInput}
-                  onChangeText={(e) => setCommentInput(e)}
-                />
-                <Pressable onPress={() => handleSendCommentPress(item)}>
-                  <Text style={styles.sendBtnText}>Skicka</Text>
-                </Pressable>
-              </>
-            )}
+            {viewCommentInput && <CommentForm item={item} />}
           </View>
         )}
       </View>
@@ -191,22 +123,7 @@ const styles = StyleSheet.create({
     textShadowRadius: 1,
     fontSize: 16,
   },
-  chatbubble: {
-    flexDirection: "row",
-    gap: 5,
-    width: 50,
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "grey",
-    padding: 3,
-    borderRadius: 10,
-    marginBottom: 10,
-    shadowColor: "black",
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 1,
-    shadowRadius: 1,
-  },
+
   commentBtn: {
     borderWidth: 1,
     borderColor: "grey",
@@ -220,30 +137,5 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 1,
     shadowRadius: 1,
-  },
-  input: {
-    backgroundColor: "white",
-    fontSize: 16,
-    padding: 5,
-    width: 280,
-    height: 80,
-    alignSelf: "center",
-    borderRadius: 5,
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  sendBtnText: {
-    color: "white",
-    fontWeight: "bold",
-    alignSelf: "flex-end",
-    marginRight: 20,
-    borderWidth: 1,
-    borderColor: "white",
-    padding: 3,
-    borderRadius: 5,
-    shadowColor: "black",
-    shadowOffset: { width: 2, height: 2 },
-    shadowOpacity: 1,
-    shadowRadius: 2,
   },
 });
