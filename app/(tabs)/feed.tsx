@@ -1,4 +1,10 @@
-import { FlatList, StyleSheet, View } from "react-native";
+import {
+  FlatList,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  View,
+} from "react-native";
 import React from "react";
 import { useAppContext } from "@/components/context";
 
@@ -8,13 +14,17 @@ const feed = () => {
   const { posts } = useAppContext();
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <FlatList
         data={posts}
         renderItem={({ item }) => <PostItem item={item} />}
         keyExtractor={(item) => item.id.toString()}
+        contentContainerStyle={styles.list}
       />
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -25,5 +35,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#475366",
     paddingTop: 10,
+  },
+  list: {
+    paddingBottom: 80,
   },
 });

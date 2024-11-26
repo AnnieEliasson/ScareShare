@@ -1,6 +1,14 @@
-import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Monster, Post, useAppContext } from "./context";
+import { useState } from "react";
 
 type Props = {
   item: Post;
@@ -36,8 +44,31 @@ const handleViewComments = (item: Post, posts: Post[], setPosts: any) => {
 };
 
 const PostItem = ({ item }: Props) => {
-  const { monsters, posts, setPosts } = useAppContext();
+  const [viewCommentInput, setViewCommentInput] = useState(false);
+  const [commentInput, setCommentInput] = useState("");
+  const { monsters, posts, setPosts, user } = useAppContext();
   const author = monsters.find((m) => m.id === item.authorId);
+
+  const handleSendCommentPress = (item: Post) => {
+    const newComment = {
+      id: Math.random(),
+      text: commentInput,
+      authorId: user.id,
+    };
+
+    const updatedPosts = posts.map((post) =>
+      post.id === item.id
+        ? { ...post, comments: [...post.comments, newComment] }
+        : post
+    );
+
+    setPosts(updatedPosts);
+    setCommentInput("");
+  };
+
+  const handleCommentPress = (item: Post) => {
+    setViewCommentInput(!viewCommentInput);
+  };
   return (
     <>
       <View style={styles.post}>
@@ -58,17 +89,29 @@ const PostItem = ({ item }: Props) => {
         >
           {author?.name}
         </Text>
-        <Pressable
-          style={styles.chatbubble}
-          onPress={() => handleViewComments(item, posts, setPosts)}
-        >
-          <Ionicons
-            name={"chatbubble-ellipses-outline"}
-            color={"greenyellow"}
-            size={20}
-          />
-          <Text style={styles.whiteText}>{item.comments.length}</Text>
-        </Pressable>
+
+        <View style={{ flexDirection: "row", gap: 10 }}>
+          <Pressable
+            style={styles.chatbubble}
+            onPress={() => handleViewComments(item, posts, setPosts)}
+          >
+            <Ionicons
+              name={"chatbubble-ellipses-outline"}
+              color={"greenyellow"}
+              size={20}
+            />
+            <Text style={styles.whiteText}>{item.comments.length}</Text>
+          </Pressable>
+
+          {/* Ska hantera likes */}
+          <Pressable
+            style={styles.chatbubble}
+            onPress={() => handleViewComments(item, posts, setPosts)}
+          >
+            <Ionicons name={"heart-outline"} color={"maroon"} size={20} />
+            <Text style={styles.whiteText}>{item.comments.length}</Text>
+          </Pressable>
+        </View>
         {item.viewComments && (
           <View>
             <FlatList
@@ -78,6 +121,31 @@ const PostItem = ({ item }: Props) => {
               )}
               keyExtractor={(item) => item.id.toString()}
             />
+
+            <Pressable
+              style={styles.commentBtn}
+              onPress={() => handleCommentPress(item)}
+            >
+              <Text style={{ fontWeight: "bold", color: "greenyellow" }}>
+                Kommentera
+              </Text>
+            </Pressable>
+            {viewCommentInput && (
+              <>
+                <TextInput
+                  placeholder="Skriv något..."
+                  multiline={true}
+                  numberOfLines={4}
+                  textAlignVertical="top"
+                  style={styles.input}
+                  value={commentInput}
+                  onChangeText={(e) => setCommentInput(e)}
+                />
+                <Pressable onPress={() => handleSendCommentPress(item)}>
+                  <Text style={styles.sendBtnText}>Skicka</Text>
+                </Pressable>
+              </>
+            )}
           </View>
         )}
       </View>
@@ -138,5 +206,44 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 1,
     shadowRadius: 1,
+  },
+  commentBtn: {
+    borderWidth: 1,
+    borderColor: "grey",
+    borderRadius: 10,
+    padding: 5,
+    width: 110,
+    alignItems: "center",
+    marginTop: 10,
+    marginBottom: 5,
+    shadowColor: "black",
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 1,
+  },
+  input: {
+    backgroundColor: "white",
+    fontSize: 16,
+    padding: 5,
+    width: 280,
+    height: 80,
+    alignSelf: "center",
+    borderRadius: 5,
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  sendBtnText: {
+    color: "white",
+    fontWeight: "bold",
+    alignSelf: "flex-end",
+    marginRight: 20,
+    borderWidth: 1,
+    borderColor: "white",
+    padding: 3,
+    borderRadius: 5,
+    shadowColor: "black",
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 1,
+    shadowRadius: 2,
   },
 });

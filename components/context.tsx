@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import data from "../data.json";
-// Typ för Monster
+
 export type Monster = {
   id: number;
   name: string;
@@ -8,14 +8,12 @@ export type Monster = {
   eyes: number;
 };
 
-// Typ för Comment
 type Comment = {
   id: number;
   text: string;
   authorId: number;
 };
 
-// Typ för Post
 export type Post = {
   id: number;
   title: string;
@@ -25,7 +23,6 @@ export type Post = {
   viewComments: boolean;
 };
 
-// Typ för kontexten
 type AppContextType = {
   monsters: Monster[];
   posts: Post[];
@@ -35,15 +32,13 @@ type AppContextType = {
   setUser: (user: Monster) => void;
 };
 
-// Skapa kontexten
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-// Provider-komponenten
 export const AppProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [monsters, setMonsters] = useState<Monster[]>(data.monsters); // För monsters
-  const [posts, setPosts] = useState<Post[]>(data.posts); // För posts
+  const [monsters, setMonsters] = useState<Monster[]>(data.monsters);
+  const [posts, setPosts] = useState<Post[]>(data.posts);
   const [user, setUser] = useState<Monster>({
     id: 0,
     name: "",
@@ -60,7 +55,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
   );
 };
 
-// Hook för att använda kontexten
 export const useAppContext = (): AppContextType => {
   const context = useContext(AppContext);
   if (!context) {
