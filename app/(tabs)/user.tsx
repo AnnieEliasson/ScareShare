@@ -1,4 +1,11 @@
-import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Animated,
+  FlatList,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React, { useState } from "react";
 import AddUserBtn from "@/components/AddUserBtn";
 import AddUserForm from "@/components/AddUserForm";
@@ -38,7 +45,7 @@ const user = () => {
   const Item = ({ monster }: Props) => {
     const isSelected = monster.id === user?.id;
     return (
-      <>
+      <View>
         <Pressable
           style={[
             styles.monsterContainer,
@@ -55,12 +62,20 @@ const user = () => {
           <Text>Color: {monster.color}</Text>
           <Text>Eyes: {monster.eyes}</Text>
         </Pressable>
-      </>
+      </View>
     );
   };
   return (
     <>
       <View style={styles.container}>
+        <View style={styles.topMenu}>
+          <Pressable style={styles.topMenuBtn}>
+            <Text>Logga in</Text>
+          </Pressable>
+          <Pressable style={styles.topMenuBtn}>
+            <Text>Alla monster</Text>
+          </Pressable>
+        </View>
         <AddUserForm
           showModal={showModal}
           setShowModal={setShowModal}
@@ -111,5 +126,18 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     paddingTop: 20,
+  },
+  topMenu: {
+    flexDirection: "row",
+    gap: 50,
+    height: 50,
+  },
+  topMenuBtn: {
+    backgroundColor: "orange",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+    width: 100,
+    borderRadius: 10,
   },
 });

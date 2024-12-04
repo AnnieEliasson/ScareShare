@@ -9,12 +9,22 @@ type Props = {
 
 const SymbolsWithCounters = ({ item }: Props) => {
   const { posts, setPosts } = useAppContext();
+
   const handleViewComments = (item: Post, posts: Post[], setPosts: any) => {
     const updatedArray = posts.map((p) =>
       p.id === item.id ? { ...p, viewComments: !p.viewComments } : p
     );
 
     setPosts([...updatedArray]);
+  };
+
+  const handleLikePost = (item: Post) => {
+    const updatedPosts = posts.map((post) =>
+      post.id === item.id
+        ? { ...post, likes: post.likes + 1 } // Ökar likes med 1
+        : post
+    );
+    setPosts(updatedPosts);
   };
 
   return (
@@ -31,13 +41,9 @@ const SymbolsWithCounters = ({ item }: Props) => {
         <Text style={styles.whiteText}>{item.comments.length}</Text>
       </Pressable>
 
-      {/* Ska hantera likes */}
-      <Pressable
-        style={styles.chatbubble}
-        onPress={() => handleViewComments(item, posts, setPosts)}
-      >
+      <Pressable style={styles.chatbubble} onPress={() => handleLikePost(item)}>
         <Ionicons name={"heart-outline"} color={"maroon"} size={20} />
-        <Text style={styles.whiteText}>{item.comments.length}</Text>
+        <Text style={styles.whiteText}>{item.likes}</Text>
       </Pressable>
     </View>
   );

@@ -79,7 +79,8 @@
           "authorId": 5
         }
       ],
-      "viewComments": false
+      "viewComments": false,
+      "likes": 5
     },
     {
       "id": 2,
@@ -93,7 +94,8 @@
           "authorId": 4
         }
       ],
-      "viewComments": false
+      "viewComments": false,
+      "likes": 5
     },
     {
       "id": 3,
@@ -112,7 +114,8 @@
           "authorId": 10
         }
       ],
-      "viewComments": false
+      "viewComments": false,
+      "likes": 5
     },
     {
       "id": 4,
@@ -136,7 +139,8 @@
           "authorId": 9
         }
       ],
-      "viewComments": false
+      "viewComments": false,
+      "likes": 5
     },
     {
       "id": 5,
@@ -150,7 +154,8 @@
           "authorId": 7
         }
       ],
-      "viewComments": false
+      "viewComments": false,
+      "likes": 5
     },
     {
       "id": 6,
@@ -169,7 +174,8 @@
           "authorId": 10
         }
       ],
-      "viewComments": false
+      "viewComments": false,
+      "likes": 5
     },
     {
       "id": 7,
@@ -188,7 +194,8 @@
           "authorId": 2
         }
       ],
-      "viewComments": false
+      "viewComments": false,
+      "likes": 5
     },
     {
       "id": 8,
@@ -202,7 +209,8 @@
           "authorId": 6
         }
       ],
-      "viewComments": false
+      "viewComments": false,
+      "likes": 5
     },
     {
       "id": 9,
@@ -221,7 +229,8 @@
           "authorId": 8
         }
       ],
-      "viewComments": false
+      "viewComments": false,
+      "likes": 5
     },
     {
       "id": 10,
@@ -240,7 +249,8 @@
           "authorId": 9
         }
       ],
-      "viewComments": false
+      "viewComments": false,
+      "likes": 5
     }
   ]
 }

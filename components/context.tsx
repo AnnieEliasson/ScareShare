@@ -21,6 +21,7 @@ export type Post = {
   authorId: number;
   comments: Comment[];
   viewComments: boolean;
+  likes: number;
 };
 
 type AppContextType = {

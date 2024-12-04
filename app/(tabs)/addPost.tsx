@@ -27,6 +27,7 @@ const addPost = () => {
       authorId: user.id,
       comments: [],
       viewComments: false,
+      likes: 0,
     };
 
     setPosts([completeNewPost, ...posts]);
